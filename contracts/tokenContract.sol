@@ -45,12 +45,20 @@ contract wrappedHBAR is ERC20, ERC20Detailed {
    		tokensupply = tokensupply+adjustment;
    	}
 
-   	function totalSupply() returns(uint){
+   	function totalSupply() public views returns(uint256){
    		returns tokensupply;
    	}
 
-   	function tokenBurn(){
+   	function tokenBurn(uint256 amount){
    		///Burn tokenSupply
+   		require(amount !=0)
+   		require(amount <= balance[account]);
+   		totalsupply = totalsupply.sub(amount);
+   		balance[account] = balance[account].sub(amount);
+   		emit Transfer(account, address(0), amount);
+   	}
+   	function checkMerchant(){
+   		///check if merchant is valid party
    	}
 
 }
