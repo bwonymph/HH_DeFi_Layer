@@ -10,7 +10,7 @@ const { Client, AccountBalanceQuery } = require("@hashgraph/sdk");
 
 var operatorPrivateKey = ""; //address ommitted
 var operatorAccount = ""; // account ommitted
-var topicId = 0.0.68368; // Taken from initial.js
+var topicId = ""; // Ommitted but taken from initial.js
 
 // Mint Tokens functions for minting wrapped HBAR tokens on the Ethereum network. 
 // This function is called 

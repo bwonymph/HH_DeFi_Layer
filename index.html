@@ -1,12 +1,93 @@
 <html>
-
 	<head>
-		<script type="text/javascript" src="./webserver.js"></script>
+		<script type="text/javascript" src="./demo.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 
 	<body>
-		Testing<input  id="testing" />
-		<button onclick="mintTokens(testing.value)">Mint Tokens</button>
+		<img src="logo.png"></img>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<h1>Welcome to Hush Puppy</h1>
+					<h3>HCS powered DeFi</h3>
+					<br>
+					<h4>Merchant Actions</h4>
+					<h5>wHBAR request</h5>
+					How many wHBAR you want to mint? <input  id="mint" />
+					<button onclick="simulateMint()">Mint Tokens</button>
+					<h5>wHBAR swap</h5>
+					How much wHBAR do you want to convert to HBAR? <input id="burn"/>
+					<button onclick="simulateBurn()">Swap Tokens</button>
+					<h4>User Actions</h4>
+					<h5>Purchase wHBAR</h5>
+					How much wHBAR do you want to purchase? <input id="purchase"/>
+					<button onclick="purchase()">Purchase Tokens</button>
+				</div>
+				<div class="col-lg-4">
+					<h3>Transactions</h3>
+					<div id="list">...</div>
+				</div>
+				<div class="col-lg-4">
+					<h3>Accounts</h3>
+					<h4>Hedera (HBAR)</h4>
+					<h6>Custodian</h6>
+					<div id="ch">0</div>
+					<h6>Merchant</h6>
+					<div id="mh">1000</div>
+					<h6>User</h6>
+					<div id="uh">2000</div>
+					<br>
+					<h4>Ethereum (wHBAR)</h4>
+					<h6>Custodian</h6>
+					<div id="ce">0</div>
+					<h6>Merchant</h6>
+					<div id="me">0</div>
+					<h6>User</h6>
+					<div id="ue">0</div>
+					<h4>Oracles</h4>
+					<h6>Armada server -live</h6>
+					<h6>Hash.js server -live</h6>
+					<h6>Dragonglass server -live</h6>
+
+				</div>
+			</div>
+		</div>
 	</body>
+	<script>
+		var list = document.getElementById('list'); //hard coded for demo purposes
+		function simulateMint()
+		{
+		 list.textContent += "Merchant initiate 1000 wHBAR Mint...";
+		 setTimeout(()=>{ list.textContent += "HCS Record 1000 wHBAR Request...";},2000);
+		 setTimeout(()=>{ list.textContent += "Custodian Received Funds";},2000);
+		 setTimeout(()=>{ document.getElementById('ch').innerHTML = '1000';},2500);
+		 setTimeout(()=>{ document.getElementById('mh').innerHTML = '0';},2500);
+		 setTimeout(()=>{ list.textContent += "HCS Record Minting value 1000HBAR -> 1000 wHBAR...";},4000);
+		 setTimeout(()=>{ list.textContent += "HCS Record Minted 1000 wHBAR...";},4100);
+		 setTimeout(()=>{ document.getElementById('me').innerHTML = '1000';},4500);
+		}
+		function simulateBurn()
+		{
+			document.getElementById('list').innerHTML="..."
+			setTimeout(()=>{ list.textContent += "Merchant initiate 1000 wHBAR transfer for HBAR...";},2000);
+			setTimeout(()=>{ list.textContent += "HCS Record 1000 HBAR Request...";},2500);
+			setTimeout(()=>{ list.textContent += "Merchant initiate 1000 wHBAR transfer for HBAR...";},4500);
+			setTimeout(()=>{ document.getElementById('me').innerHTML = '0';},4500)
+			setTimeout(()=>{ list.textContent += "Custodian initiate 1000 HBAR Transfer...";},6500);
+			setTimeout(()=>{ list.textContent += "Custodian initiate 1000 wHBAR Burn...";},6500);
+			setTimeout(()=>{ document.getElementById('ce').innerHTML = '0';},6500);
+			setTimeout(()=>{ list.textContent += "HCS Record 1000 wHBAR Burn Complete...";},8500);
+			setTimeout(()=>{ list.textContent += "Merchant received 1000 HBAR...";},9000);
+			setTimeout(()=>{ list.textContent += "HCS Record Merchant received 1000 HBAR...";},9000);
+			setTimeout(()=>{ document.getElementById('ch').innerHTML = '0';},9500);
+			setTimeout(()=>{ document.getElementById('mh').innerHTML = '1000';},9500);
+		}
+		function simulateUpdate()
+		{
+		 list.textContent += "starting";
+		}
+	</script>
 
 </html>
