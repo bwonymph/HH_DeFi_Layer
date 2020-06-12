@@ -108,10 +108,6 @@ async function purchaseTokens(){}
 
 	//Merchant sends wHBAR to escrow smart contract
 
-
-
-
-
 	//User sends HBAR to Merchant
 
 	//When HBAR is received, escrow smart contract sends wHBAR to account
