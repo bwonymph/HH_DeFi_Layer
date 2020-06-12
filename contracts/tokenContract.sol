@@ -29,17 +29,28 @@ contract wrappedHBAR is ERC20, ERC20Detailed {
 
    	function mintWHBAR(address receiver, uint value) onlyminter returns(bool success){
    		if (isValid(address addr) == true){
-
+   			///mint that whbar
+   		}
+   		else{
+   			///return invalid HCS approval
    		}
 
    	}
    	function isValid(address addr) returns(bool){
-   		Oracles oracle;
-   		
+   		racles o = oracles(oracles.sol contract address);
+   		o.request();
    	}
 
-   	function tokenSupply(){
+   	function tokenSupply(uint256 adjustment){
+   		tokensupply = tokensupply+adjustment;
+   	}
 
+   	function totalSupply() returns(uint){
+   		returns tokensupply;
+   	}
+
+   	function tokenBurn(){
+   		///Burn tokenSupply
    	}
 
 }
